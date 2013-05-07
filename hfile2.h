@@ -16,7 +16,6 @@ class info{
     void set_name     (char * new_name);
     void set_email    (char * new_email);
     void set_address  (char * new_address);
-    void set_phone    (char * new_phone);
     void disp_name    ();
     char * get_name   ();//returns the name. Used for the BST to sort and search
     void disp_email   ();
@@ -56,7 +55,7 @@ class invoice{
   public:
     invoice                   ();
     invoice                   (int new_id, money new_money, info new_company, info customer);
-    virtual ~invoice          (){cout << "\nVirtual Destructor Called\n";}
+    virtual ~invoice          ();
     int set_id                (int new_id);
     void set_company          (info new_company);
     void set_customer         (info new_customer);
@@ -71,6 +70,9 @@ class invoice{
 
 };
 
+
+//derived class from the invoice class.
+//just has added int private data member added
 class lawncare : public invoice{
 
   public:
@@ -105,13 +107,18 @@ class catering : public invoice{
     int driving_distance;
 };
 
+
+//linear linked list node for the data structure.
+//there will be a head pointer to an LLL in every binary
+//search tree node.
+
 class LLL_node{
 
   public:
     LLL_node              ();
-    LLL_node              (LLL_node * new_next, invoice * new_invoice_ptr);
     ~LLL_node             ();
-    void set_next_to      (LLL_node * new_next);
+    LLL_node              (LLL_node * new_next, invoice * new_invoice_ptr);
+    void set_next_to      (LLL_node * new_next); 
     void set_invoice      (invoice * new_invoice);
     char * get_person_name();
     LLL_node * get_next   ();
@@ -122,11 +129,22 @@ class LLL_node{
     invoice  * invoice_ptr;
 };
 
-
+//This is the tree node class for the data structure and
+//it holds the left and right pointer, along with a head pointer
+/// to a linear linked list.
+//it also contains the amount of nodes in the linear linkd list.
+//there is also a char array to keep track of the names of the people.
+//this will make it easier to compare names with the search terms in the future
 class tree_node{
   public:
-    tree_node       ();
-    ~tree_node      ();
+    tree_node             (); 
+    ~tree_node            ();
+    tree_node * get_left  ();
+    tree_node * get_right ();
+    int get_num_items     ();
+    void recursive_LLL    (LLL_node *& head);
+    void recursive_BST    (tree_node *& root); 
+
   private:
     LLL_node * head;
     tree_node * left;
@@ -136,7 +154,8 @@ class tree_node{
 
 };
 
-
+//this is the class that manages the data structure and does all the operations
+//requried on it
 class menu{
 
   public:
@@ -148,7 +167,7 @@ class menu{
     void retreive_invoices        (char * person_name);
     void remove_all_invoices      ();
   private:
-    tree_node * root;
+    tree_node * root; 			
 
 };
 

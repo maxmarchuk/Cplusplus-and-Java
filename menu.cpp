@@ -3,12 +3,11 @@
 
 menu::menu(){
 
-  //root = new tree_node;
+  root = new tree_node;
 
 }
 
 menu::~menu(){
-
 
 
 }
