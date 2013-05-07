@@ -9,6 +9,17 @@ menu::menu(){
 
 menu::~menu(){
 
+  remove_all_invoices(root);
+
+}
+
+void menu::remove_all_invoices(tree_node * & root){
+
+  if(!root)
+    return;
+  remove_all_invoices(root->get_left());
+  remove_all_invoices(root->get_right());
+  delete root;
 
 }
 

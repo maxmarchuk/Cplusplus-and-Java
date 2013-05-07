@@ -139,8 +139,8 @@ class tree_node{
   public:
     tree_node             ();
     ~tree_node            ();
-    tree_node * get_left  ();
-    tree_node * get_right ();
+    tree_node *& get_left  ();
+    tree_node *& get_right ();
     int get_num_items     ();
     void recursive_LLL    (LLL_node *& head);
     void recursive_BST    (tree_node *& root);
@@ -165,7 +165,7 @@ class menu{
     void add_new_invoice          (info new_person, info new_company, money new_money);
     void remove_invoice           (char * person_name, int number);
     void retreive_invoices        (char * person_name);
-    void remove_all_invoices      ();
+    void remove_all_invoices      (tree_node * & root);
   private:
     tree_node * root;
 

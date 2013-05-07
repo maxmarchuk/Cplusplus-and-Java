@@ -12,9 +12,8 @@ tree_node::tree_node(){
 
 tree_node::~tree_node(){
 
-  recursive_remove(head);
+  recursive_LLL(head);
   delete [] person_name;
-  delete []
 
 
 }
@@ -34,8 +33,19 @@ void tree_node::recursive_LLL(LLL_node *& head){
     return;
 
   recursive_LLL( head->get_next() );
-  recursive_LLL( head->get_right() );
 
   delete head;
+
+}
+
+tree_node *& tree_node::get_right(){
+
+  return left;
+
+}
+
+tree_node *& tree_node::get_right(){
+
+  return right;
 
 }
