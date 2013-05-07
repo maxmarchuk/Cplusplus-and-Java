@@ -3,8 +3,8 @@
 //default constructor
 LLL_node::LLL_node(){
 
-  next = NULL; 
-  invoice_ptr = new invoice; 
+  next = NULL;
+  invoice_ptr = new invoice;
 
 }
 
@@ -19,6 +19,12 @@ LLL_node::~LLL_node(){
 
   delete next;
   delete invoice_ptr;
+
+}
+
+LLL_node * LLL_node::get_next(){
+
+  return next;
 
 }
 

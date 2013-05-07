@@ -118,10 +118,10 @@ class LLL_node{
     LLL_node              ();
     ~LLL_node             ();
     LLL_node              (LLL_node * new_next, invoice * new_invoice_ptr);
-    void set_next_to      (LLL_node * new_next); 
+    void set_next_to      (LLL_node * new_next);
+    LLL_node * get_next   ();
     void set_invoice      (invoice * new_invoice);
     char * get_person_name();
-    LLL_node * get_next   ();
     invoice * get_invoice ();
 
   private:
@@ -137,13 +137,13 @@ class LLL_node{
 //this will make it easier to compare names with the search terms in the future
 class tree_node{
   public:
-    tree_node             (); 
+    tree_node             ();
     ~tree_node            ();
     tree_node * get_left  ();
     tree_node * get_right ();
     int get_num_items     ();
     void recursive_LLL    (LLL_node *& head);
-    void recursive_BST    (tree_node *& root); 
+    void recursive_BST    (tree_node *& root);
 
   private:
     LLL_node * head;
@@ -167,7 +167,7 @@ class menu{
     void retreive_invoices        (char * person_name);
     void remove_all_invoices      ();
   private:
-    tree_node * root; 			
+    tree_node * root;
 
 };
 
