@@ -119,7 +119,7 @@ class LLL_node{
     ~LLL_node             ();
     LLL_node              (LLL_node * new_next, invoice * new_invoice_ptr);
     void set_next_to      (LLL_node * new_next);
-    LLL_node * get_next   ();
+    LLL_node *& get_next   ();
     void set_invoice      (invoice * new_invoice);
     char * get_person_name();
     invoice * get_invoice ();
