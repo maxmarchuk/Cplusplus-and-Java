@@ -7,7 +7,6 @@
 int main(){
 
   menu invoice_menu;
-  info temp_info;
   main_menu(invoice_menu);
 
 }

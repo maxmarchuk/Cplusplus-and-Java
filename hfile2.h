@@ -79,7 +79,7 @@ class lawncare : public invoice{
   public:
     lawncare              ();
     ~lawncare             ();
-    lawncare              (info new_person, info new_company, money new_money);
+    lawncare              (info &new_person, info &new_company, money &new_money);
     void invoice_type     ();
     void set_frequency    (int new_frequency);
     void show_frequency   ();
@@ -92,7 +92,7 @@ class painting : public invoice{
   public:
     painting            ();
     ~painting           ();
-    painting            (info new_person, info new_company, money new_money);
+    painting            (info &new_person, info &new_company, money &new_money);
     void invoice_type   ();
     void set_warranty   (bool has_warranty);
   private:
@@ -104,7 +104,7 @@ class catering : public invoice{
   public:
     catering            ();
     ~catering           ();
-    catering            (info new_person, info new_company, money new_money);
+    catering            (info &new_person, info &new_company, money &new_money);
     void set_distance   (int new_distance);
     void invoice_type   ();
   private:
@@ -142,7 +142,7 @@ class LLL_node{
 class tree_node{
   public:
     tree_node             ();
-    tree_node             (info new_person, info new_company, money new_money, int invoice_type);
+    tree_node             (info &new_person, info &new_company, money &new_money, int &invoice_type);
     ~tree_node            ();
     tree_node *& get_left  ();
     tree_node *& get_right ();
@@ -167,8 +167,8 @@ class menu{
     menu                          ();
     ~menu                         ();
     void display_all              ();
-    void add_new_invoice          (info new_person, info new_company, money new_money, int invoice_type);
-    void add_new_invoice          (info new_person, info new_company, money new_money, int invoice_type, tree_node *& root);
+    void add_new_invoice          (info &new_person, info &new_company, money &new_money, int &invoice_type);
+    void add_new_invoice          (info &new_person, info &new_company, money &new_money, int &invoice_type, tree_node *& root);
     void remove_invoice           (char * person_name, int number);
     void retreive_invoices        (char * person_name);
     void remove_all_invoices      (tree_node * & root);

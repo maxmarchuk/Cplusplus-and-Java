@@ -1,6 +1,7 @@
 #include "hfile2.h"
 
 
+
 info::info(){
 
   name    = new char[31];
@@ -48,6 +49,7 @@ invoice::invoice()
 {
 
 
+
 }
   void invoice::set_company(info &new_company){}
   void invoice::set_customer(info &new_person){}
@@ -59,7 +61,7 @@ invoice::~invoice(){}
 void invoice::display(){}
 
 ///////////LAWN CARE CLASS
-lawncare::lawncare(info new_person, info new_company, money new_money){
+lawncare::lawncare(info &new_person, info &new_company, money &new_money){
   cout << "\nWhat is the frequency of lawncare that is being provided? (times per week): ";
   cin >> frequency_of_care;
   cin.ignore();
@@ -98,13 +100,11 @@ money::money(float new_total, float new_received, float new_due){
 
 }
 
-money::~money(){
-
-}
+money::~money(){}
 
 
 /////PAINTING CLASS
-painting::painting(info new_person, info new_company, money new_money){
+painting::painting(info &new_person, info &new_company, money &new_money){
 
   int has_warranty = 1;//default 1 for warranty
 
@@ -143,7 +143,7 @@ void painting::invoice_type(){
 
 
 //////////catering class
-catering::catering(info new_person, info new_company, money new_money){
+catering::catering(info &new_person, info &new_company, money &new_money){
 
   int has_warranty = 1;//default 1 for warranty
 

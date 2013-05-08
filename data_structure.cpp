@@ -26,12 +26,12 @@ void menu::remove_all_invoices(tree_node * & root){
 
 
 
-void menu::add_new_invoice(info new_person, info new_company, money new_money, int invoice_type){
+void menu::add_new_invoice(info &new_person, info &new_company, money &new_money, int &invoice_type){
 
   add_new_invoice(new_person, new_company, new_money, invoice_type, root);
   cout << "\n passed root in \n";
 }
-void menu::add_new_invoice (info new_person, info new_company, money new_money, int invoice_type, tree_node *& root){
+void menu::add_new_invoice (info &new_person, info &new_company, money &new_money, int &invoice_type, tree_node *& root){
 
   if(!root)//if a name match hasn't been found and you reached the insertion point
     {
@@ -106,7 +106,7 @@ tree_node::tree_node(){
   list_items = 0;
 
 }
-tree_node::tree_node(info new_person, info new_company, money new_money, int invoice_type){
+tree_node::tree_node(info &new_person, info &new_company, money &new_money, int &invoice_type){
 
   left = NULL;
   right = NULL;
