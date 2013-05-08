@@ -57,10 +57,11 @@ class invoice{
     invoice                   (int new_id, money new_money, info new_company, info customer);
     virtual ~invoice          ();
     int set_id                (int new_id);
-    void set_company          (info new_company);
-    void set_customer         (info new_customer);
+    void set_company          (info &new_company);
+    void set_customer         (info &new_customer);
+    void set_money            (money &new_money);
     char * get_cust_name      ();
-    virtual void invoice_type ();
+    virtual void display ();
 
   private:
     int id;             //should be automatically set by a variable in main
@@ -78,6 +79,7 @@ class lawncare : public invoice{
   public:
     lawncare              ();
     ~lawncare             ();
+    lawncare              (info new_person, info new_company, money new_money);
     void invoice_type     ();
     void set_frequency    (int new_frequency);
     void show_frequency   ();
@@ -90,6 +92,7 @@ class painting : public invoice{
   public:
     painting            ();
     ~painting           ();
+    painting            (info new_person, info new_company, money new_money);
     void invoice_type   ();
     void set_warranty   (bool has_warranty);
   private:
@@ -101,6 +104,7 @@ class catering : public invoice{
   public:
     catering            ();
     ~catering           ();
+    catering            (info new_person, info new_company, money new_money);
     void set_distance   (int new_distance);
     void invoice_type   ();
   private:
@@ -117,7 +121,7 @@ class LLL_node{
   public:
     LLL_node              ();
     ~LLL_node             ();
-    LLL_node              (LLL_node * new_next, invoice * new_invoice_ptr);
+    LLL_node              (info new_person, info new_company, money new_money, int invoice_type);
     void set_next_to      (LLL_node * new_next);
     LLL_node *& get_next   ();
     void set_invoice      (invoice * new_invoice);
@@ -138,6 +142,7 @@ class LLL_node{
 class tree_node{
   public:
     tree_node             ();
+    tree_node             (info new_person, info new_company, money new_money, int invoice_type);
     ~tree_node            ();
     tree_node *& get_left  ();
     tree_node *& get_right ();
@@ -146,7 +151,7 @@ class tree_node{
     void recursive_BST    (tree_node *& root);
 
   private:
-    LLL_node * head;
+    LLL_node  * head;
     tree_node * left;
     tree_node * right;
     int list_items;
@@ -162,10 +167,12 @@ class menu{
     menu                          ();
     ~menu                         ();
     void display_all              ();
-    void add_new_invoice          (info new_person, info new_company, money new_money);
+    void add_new_invoice          (info new_person, info new_company, money new_money, int invoice_type);
+    void add_new_invoice          (info new_person, info new_company, money new_money, int invoice_type, tree_node *& root);
     void remove_invoice           (char * person_name, int number);
     void retreive_invoices        (char * person_name);
     void remove_all_invoices      (tree_node * & root);
+
   private:
     tree_node * root;
 

@@ -34,22 +34,40 @@ info::~info(){
   delete address;
 }
 
+char * info::get_name(){
+
+  return name;
+}
 
 
+//////////////////////////
+// INVOICE CLASS////////////
+//////////////////////////
 
 invoice::invoice()
 {
 
 
 }
+  void invoice::set_company(info &new_company){}
+  void invoice::set_customer(info &new_person){}
+  void invoice::set_money(money &new_money){}
 
 
 invoice::~invoice(){}
 
-void invoice::invoice_type(){}
+void invoice::display(){}
 
 ///////////LAWN CARE CLASS
-lawncare::lawncare(){
+lawncare::lawncare(info new_person, info new_company, money new_money){
+  cout << "\nWhat is the frequency of lawncare that is being provided? (times per week): ";
+  cin >> frequency_of_care;
+  cin.ignore();
+
+  //finally copy all of the necessary data over
+  set_company(new_company);
+  set_customer(new_person);
+  set_money(new_money);
 
 }
 
@@ -86,7 +104,31 @@ money::~money(){
 
 
 /////PAINTING CLASS
-painting::painting(){
+painting::painting(info new_person, info new_company, money new_money){
+
+  int has_warranty = 1;//default 1 for warranty
+
+  cout << "\nDid "<< new_person.get_name() << " pay for warranty on the paint job?"
+       << "\n1) Yes"
+       << "\n2) No"
+       << "Enter 1 or 2: ";
+  cin >> has_warranty;
+  cin.ignore();
+  if(has_warranty == 1)
+    set_warranty(true);
+  else
+    set_warranty(false);
+
+  //finally copy all of the necessary data over
+  set_company(new_company);
+  set_customer(new_person);
+  set_money(new_money);
+
+}
+
+void painting::set_warranty(bool has_warranty){
+
+  warranty = has_warranty;
 
 }
 
@@ -101,7 +143,18 @@ void painting::invoice_type(){
 
 
 //////////catering class
-catering::catering(){
+catering::catering(info new_person, info new_company, money new_money){
+
+  int has_warranty = 1;//default 1 for warranty
+
+  cout << "\nHow far must the employee drive to deliver the food?\nHours: ";
+  cin >> driving_distance;
+  cin.ignore();
+
+  //finally copy all of the necessary data over
+  set_company(new_company);
+  set_customer(new_person);
+  set_money(new_money);
 
 }
 

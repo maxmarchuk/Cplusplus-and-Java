@@ -129,6 +129,9 @@ void add_temp_invoice(menu & menu_obj, int & id){
 
   //Pass all of the objects into the add_new_invoice functoin in the menu class object
  // menu_obj.add_new_invoice(temp_customer, temp_company, temp_money);
+  cout << "\n\npassing in\n";
+  menu_obj.add_new_invoice(temp_customer, temp_company, temp_money, invoice_choice);
+
 
  ++id;
 }
