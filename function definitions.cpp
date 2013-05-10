@@ -11,13 +11,31 @@ info::info(){
 }
 
 
+//COPY CONSTRUCTOR for the info class.
+info::info(const info &copy){
+  
+  name    = new char[strlen(copy.name)+1];
+  email   = new char[strlen(copy.email)+1];
+  address = new char[strlen(copy.address)+1];
+  phone   = new char[strlen(copy.phone)+1];
+  
+
+  strcpy(name, copy.name);
+  strcpy(email, copy.email);
+  strcpy(address, copy.address);
+  strcpy(phone, copy.phone);
+
+
+}
+
+//This is the info class that will take in all the data members as arguments
 info::info(char * new_name, char * new_email, char * new_address, char * new_phone){
 
   //allocate the memory for the new object
-  name    = new char[31];
-  email   = new char[31];
-  address = new char[101];
-  phone   = new char[15];
+  name    = new char[strlen(new_name)+1];
+  email   = new char[strlen(new_email)+1];
+  address = new char[strlen(new_address)+1];
+  phone   = new char[strlen(new_phone)+1];
 
   //copy the given input into it right away
   strcpy(name, new_name);
@@ -42,34 +60,29 @@ char * info::get_name(){
 
 
 //////////////////////////
-// INVOICE CLASS////////////
-//////////////////////////
+// INVOICE CLASS//////////
+/////////////////////////
 
 invoice::invoice()
-{
+{}
 
+invoice::invoice(info &new_person, info &new_company, money &new_money){
 
-
+   //copy all of the data over 
+   customer = new_person;
+   company = new_company;
+   balance = new_money; 
 }
-  void invoice::set_company(info &new_company){}
-  void invoice::set_customer(info &new_person){}
-  void invoice::set_money(money &new_money){}
-
 
 invoice::~invoice(){}
 
 void invoice::display(){}
 
 ///////////LAWN CARE CLASS
-lawncare::lawncare(info &new_person, info &new_company, money &new_money){
+lawncare::lawncare(info &new_person, info &new_company, money &new_money) : invoice(new_person, new_company, new_money){
   cout << "\nWhat is the frequency of lawncare that is being provided? (times per week): ";
   cin >> frequency_of_care;
   cin.ignore();
-
-  //finally copy all of the necessary data over
-  set_company(new_company);
-  set_customer(new_person);
-  set_money(new_money);
 
 }
 
@@ -104,7 +117,8 @@ money::~money(){}
 
 
 /////PAINTING CLASS
-painting::painting(info &new_person, info &new_company, money &new_money){
+painting::painting(info &new_person, info &new_company, money &new_money) : invoice(new_person, new_company, new_money){
+
 
   int has_warranty = 1;//default 1 for warranty
 
@@ -118,12 +132,6 @@ painting::painting(info &new_person, info &new_company, money &new_money){
     set_warranty(true);
   else
     set_warranty(false);
-
-  //finally copy all of the necessary data over
-  set_company(new_company);
-  set_customer(new_person);
-  set_money(new_money);
-
 }
 
 void painting::set_warranty(bool has_warranty){
@@ -143,19 +151,14 @@ void painting::invoice_type(){
 
 
 //////////catering class
-catering::catering(info &new_person, info &new_company, money &new_money){
+catering::catering(info &new_person, info &new_company, money &new_money) : invoice(new_person, new_company, new_money){
 
-  int has_warranty = 1;//default 1 for warranty
+
+//  int has_warranty = 1;//default 1 for warranty
 
   cout << "\nHow far must the employee drive to deliver the food?\nHours: ";
   cin >> driving_distance;
   cin.ignore();
-
-  //finally copy all of the necessary data over
-  set_company(new_company);
-  set_customer(new_person);
-  set_money(new_money);
-
 }
 
 catering::~catering(){

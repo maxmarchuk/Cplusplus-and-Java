@@ -3,8 +3,7 @@
 
 menu::menu(){
 
-  root = new tree_node;
-
+  root = NULL;
 }
 
 menu::~menu(){
@@ -31,15 +30,14 @@ void menu::add_new_invoice(info &new_person, info &new_company, money &new_money
   add_new_invoice(new_person, new_company, new_money, invoice_type, root);
   cout << "\n passed root in \n";
 }
+
 void menu::add_new_invoice (info &new_person, info &new_company, money &new_money, int &invoice_type, tree_node *& root){
 
   if(!root)//if a name match hasn't been found and you reached the insertion point
     {
       root = new tree_node(new_person, new_company, new_money, invoice_type);
     }
-    else
-       cout << "\nRoot exists.\n";
-
+   
 
 }
 
@@ -92,8 +90,7 @@ LLL_node *& LLL_node::get_next(){
 
 }
 
-
-//////////////////////////////////////
+////////////////////////////////////
 //      TREE_NODE CLASS  //////////
 //////////////////////////////////
 
@@ -102,7 +99,7 @@ tree_node::tree_node(){
   head    = new LLL_node;
   left    = NULL;
   right   = NULL;
-  char * person_name = NULL;
+  //char * person_name = NULL;
   list_items = 0;
 
 }
@@ -110,10 +107,8 @@ tree_node::tree_node(info &new_person, info &new_company, money &new_money, int 
 
   left = NULL;
   right = NULL;
-  head = new LLL_node(new_person, new_company, new_money, invoice_type);
-
-
-  list_items = 1;
+  if(!head)
+      head = new LLL_node(new_person, new_company, new_money, invoice_type);
 
 }
 

@@ -12,6 +12,7 @@ class info{
   public:
     info();
     info(char * new_name, char * new_email, char * new_address, char * new_phone);
+    info(const info&);
     ~info();
     void set_name     (char * new_name);
     void set_email    (char * new_email);
@@ -54,7 +55,8 @@ class invoice{
 
   public:
     invoice                   ();
-    invoice                   (int new_id, money new_money, info new_company, info customer);
+    //invoice                   (int new_id, money new_money, info new_company, info customer);
+    invoice                   (info &new_person, info &new_company, money &new_money);
     virtual ~invoice          ();
     int set_id                (int new_id);
     void set_company          (info &new_company);
@@ -122,8 +124,9 @@ class LLL_node{
     LLL_node              ();
     ~LLL_node             ();
     LLL_node              (info new_person, info new_company, money new_money, int invoice_type);
+    LLL_node * get_tail   ();
     void set_next_to      (LLL_node * new_next);
-    LLL_node *& get_next   ();
+    LLL_node *& get_next  ();
     void set_invoice      (invoice * new_invoice);
     char * get_person_name();
     invoice * get_invoice ();
