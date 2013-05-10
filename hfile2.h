@@ -55,7 +55,6 @@ class invoice{
 
   public:
     invoice                   ();
-    //invoice                   (int new_id, money new_money, info new_company, info customer);
     invoice                   (info &new_person, info &new_company, money &new_money);
     virtual ~invoice          ();
     int set_id                (int new_id);
@@ -63,6 +62,7 @@ class invoice{
     void set_customer         (info &new_customer);
     void set_money            (money &new_money);
     char * get_cust_name      ();
+    void display_invoice      ();
     virtual void display ();
 
   private:
@@ -77,7 +77,6 @@ class invoice{
 //derived class from the invoice class.
 //just has added int private data member added
 class lawncare : public invoice{
-
   public:
     lawncare              ();
     ~lawncare             ();
@@ -170,6 +169,7 @@ class menu{
     menu                          ();
     ~menu                         ();
     void display_all              ();
+    void display                  (tree_node * root);
     void add_new_invoice          (info &new_person, info &new_company, money &new_money, int &invoice_type);
     void add_new_invoice          (info &new_person, info &new_company, money &new_money, int &invoice_type, tree_node *& root);
     void remove_invoice           (char * person_name, int number);

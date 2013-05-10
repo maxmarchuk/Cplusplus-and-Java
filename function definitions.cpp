@@ -76,7 +76,11 @@ invoice::invoice(info &new_person, info &new_company, money &new_money){
 
 invoice::~invoice(){}
 
-void invoice::display(){}
+void invoice::display(){
+
+  
+
+}
 
 ///////////LAWN CARE CLASS
 lawncare::lawncare(info &new_person, info &new_company, money &new_money) : invoice(new_person, new_company, new_money){
@@ -86,12 +90,10 @@ lawncare::lawncare(info &new_person, info &new_company, money &new_money) : invo
 
 }
 
-lawncare::~lawncare(){
+lawncare::~lawncare(){}
 
-}
-void lawncare::invoice_type(){
 
-}
+void lawncare::invoice_type(){}
 
 ////MONEY CLASS
 
@@ -140,31 +142,26 @@ void painting::set_warranty(bool has_warranty){
 
 }
 
-painting::~painting(){
+painting::~painting(){}
 
-}
+void painting::invoice_type(){}
 
-void painting::invoice_type(){
+//////////////////////////////
+//////////catering class ////
+////////////////////////////
 
-}
-
-
-
-//////////catering class
+//catering constructor that takes in the information for a new invoice object and
+//passes it into the base class constructor for assignment.
 catering::catering(info &new_person, info &new_company, money &new_money) : invoice(new_person, new_company, new_money){
-
-
 //  int has_warranty = 1;//default 1 for warranty
 
   cout << "\nHow far must the employee drive to deliver the food?\nHours: ";
   cin >> driving_distance;
   cin.ignore();
-}
-
-catering::~catering(){
-
-}
-void catering::invoice_type(){
 
 }
 
+catering::~catering(){}
+
+
+void catering::invoice_type(){}
