@@ -53,13 +53,26 @@ std::istream & operator>> (istream &in, text *&newText){
 //class which is derived from the post class
 std::ostream & operator<< (ostream &out, const text* &outputText){
 
+    if(!outputText)
+        cout << "\nEmpty\n";
 
-
+    else{
+    
+        cout << "\nAuthor: "    << outputText->author   << "\n"
+             <<   "Title:  "    << outputText->title    << "\n"
+             <<   "response: "  << outputText->response << "\n\n";
+    }
 }
 
+text & text::operator ++ (){
+
+    postRating += 1; 
+
+}
 
 //the function for setting the response
 void text::setResponse(char *newResponse){
 
+    strcpy(response, newResponse);
 }
 

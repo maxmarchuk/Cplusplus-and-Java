@@ -17,18 +17,20 @@ using namespace std;
 //the actual feedback based on what type of post it is.
 class post
 {
-
     public:
-        post            ();
-        ~post           ();
-        void setTitle   (char * newTitle);
-        void setAuthor  (char * newAuthor);
-        
-    private:
+        post                    ();
+        ~post                   ();
+        void setTitle           (char * newTitle);
+        void setAuthor          (char * newAuthor);
+        virtual char *getTitle  ();
+        virtual char *getAuthor ();
+            
+    protected:
         char * title;
         char * author;
         int postRating; //not set by user. can be used later on to rate 
-                        // the user's post by other users.
+                        // the user's post by other users using ++ operator.
+                        // which will increment the rating by 1
 
 };
 
@@ -40,12 +42,13 @@ class text : public post
         text                ();
         ~text               ();
         void setResponse    (char * newResponse);
-        friend istream & operator  >>  (istream &, text*&);
-        friend ostream & operator  <<  (ostream &, const text*&);
-        
-
+        friend istream & operator  >>   (istream &, text*&);
+        friend ostream & operator  <<   (ostream &, const text*&);
+        text & operator            ++   ();
     private:
         char * response;
+
+
 };
 
 class link : public post
