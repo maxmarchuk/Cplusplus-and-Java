@@ -19,14 +19,22 @@ class post
 {
     public:
         post                    ();
+        post                    (char *newTitle, char *newAuthor, char *newKeyword, int newRating);
         ~post                   ();
         void setTitle           (char * newTitle);
         void setAuthor          (char * newAuthor);
-        virtual char *getTitle  ();
-        virtual char *getAuthor ();
-            
+        void setRating          (int newRating);
+        void setKeyword         (char * newKeyword);
+        char *getKeyword        () const;
+        char *getTitle          () const;
+        char *getAuthor         () const;
+        int  getRating          () const;
+        void incrementRate      ();
+        virtual void display    ();    
+
     protected:
         char * title;
+        char * keyword;
         char * author;
         int postRating; //not set by user. can be used later on to rate 
                         // the user's post by other users using ++ operator.
@@ -39,15 +47,18 @@ class post
 class text : public post
 {
     public:
-        text                ();
-        ~text               ();
-        void setResponse    (char * newResponse);
-        friend istream & operator  >>   (istream &, text*&);
-        friend ostream & operator  <<   (ostream &, const text*&);
+        text                            ();
+        text                            (const text &textSource);
+        ~text                           ();
+        void setResponse                (char * newResponse);
+        char * getResponse              () const ;
+        friend istream & operator  >>   (istream &, text&);
+        friend ostream & operator  <<   (ostream &, const text&);
+        text & operator            =    (const text &);
         text & operator            ++   ();
+
     private:
         char * response;
-
 
 };
 
@@ -61,7 +72,6 @@ class link : public post
         char * source;
         bool goodSource;    //modified by the user or blog owner. Determines if the link's source
                             // is reliable. 
-                          
 }; 
                             
 //node class for the doubly linked list. 
@@ -93,12 +103,14 @@ class DLLArray
 {
 
     public:
+        DLLArray        ();
+        ~DLLArray       ();
         void insertNew  (node *& newNode);
         void searchName (char * findName); 
     private:
-        node * head;
-        int members;
-
+        int MAX; 
+        node ** head;
+        
 };
 
 

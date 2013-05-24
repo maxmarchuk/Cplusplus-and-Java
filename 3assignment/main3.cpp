@@ -7,6 +7,14 @@
 #include "hfile3.h"
 
 int main(){
+    
+    text newText;
 
+    std::cin >> newText; 
+    for(int i = 0; i < 223; ++i)
+    ++newText;
+
+    cout << newText;
 
 }
+
