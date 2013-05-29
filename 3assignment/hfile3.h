@@ -3,7 +3,6 @@
 ** CS 202 ** Karla Fant ** Program #3
 ** This is the header file for the program that contains all of the class
 ** and function prototypes. the definitions are in different .cpp files.
-**
 */
 
 
@@ -30,10 +29,9 @@ class post
         char *getAuthor         () const;
         int  getRating          () const;
         void incrementRate      ();
-        virtual void display    () const;    
+        virtual void display    ();    
         friend ostream & operator <<(ostream &, const post&);
-       
-    
+
     protected:
         char * title;
         char * keyword;
@@ -60,7 +58,7 @@ class text : public post
         bool operator              !=   (const text&) const; 
         text & operator            =    (const text &);
         text & operator            ++   ();
-        void display                    () const;    
+        void display                    () ;    
 
     private:
         char * response;
@@ -69,7 +67,6 @@ class text : public post
 
 //derived class from post. Just another possible post type that can be made.
 //the only difference is that it has a URL added on as a data member.
-//
 class link : public post
 {
     public:
@@ -84,7 +81,7 @@ class link : public post
         bool operator              !=   (const link&) const; 
         link & operator            =    (link&);
         link & operator            ++   ();
-        void display                    () const;    
+        void display                    ();    
 
 
     private:

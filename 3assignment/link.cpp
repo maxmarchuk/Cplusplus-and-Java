@@ -154,8 +154,8 @@ char * link::getURL() const{
 }
 
 //displays the data members of the link object and the base class object
-void link::display() const{
-
+void link::display(){
+    cout << "\nTEXT\n\n";
     cout << "\nTitle: "    << getTitle() << "\n"
          <<   "Author:  "    << getAuthor()  << "\n"
          <<   "Response: "  << URL << "\n"

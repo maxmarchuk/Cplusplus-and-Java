@@ -68,22 +68,18 @@ void blog::insertNew(post *& postPtr){
 void blog::displayAll(){
 
     node * temp;
-    cout << "\nin display fxn\n";
     //if the data structure exists at all
     if(head)
     {
-        cout << "\nhead is.\n";
         for(int i = 0; i < MAX; ++i)
         {
             //if the current index exists
             if(head[i])
             {
                 //display all of the list with a while loop
-                cout << "\nhead[i] is.\n";
                 temp = head[i];
                 while(temp)
                 {
-                    cout << "\ntemp is.\n";
                     temp->dispPost();
                     temp = temp->getNext();
                 }

@@ -55,6 +55,7 @@ void node::setPrev(node * newPrev){
 
 }
 
+//simply sets the post pointer in the node
 void node::setPost(post * newPost){
 
     blogPost = newPost;
@@ -73,8 +74,10 @@ bool node::keywordIs(char * keyword){
     return false;
 }
 
+//displays what the pointer is pointing to
 void node::dispPost(){
 
     cout << *blogPost;
+
 }
 

@@ -41,7 +41,6 @@ post::~post(){
         delete author;
     if(keyword)
         delete keyword;
-
 }
 
 
@@ -111,15 +110,13 @@ void post::setRating(int newRating){
 
 
 
-std::ostream & operator << (ostream &out, const post& obj){
-
-    obj.display(); 
+std::ostream & operator << (ostream &out, const post & obj){
 
 }
-void post::display() const{
 
-    cout << "\n in post display\n";
-
+//
+void post::display(){
+   //shouldn't be getting called 
 }
 
 

@@ -157,8 +157,9 @@ char * text::getResponse() const{
 }
 
 //dislpays all of the data members, including those of the post class
-void text::display() const{
+void text::display(){
 
+    cout << "\nLINK\n\n";
     cout << "\nTitle: "    << getTitle() << "\n"
          <<   "Author:  "    << getAuthor()  << "\n"
          <<   "Response: "  << response    << "\n"
