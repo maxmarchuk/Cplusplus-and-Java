@@ -33,8 +33,8 @@ text::text(const text &textSource){
 //default destructor for the text class
 text::~text(){
 
-    delete response;
-
+   if(response)
+       delete response;
 }
 
 //Overloading the insertion operator
@@ -86,32 +86,83 @@ std::ostream & operator<< (ostream &out, const text &outputText){
          <<   outputText.getRating()  << " people found this post helpful!\n\n";
 }
 
+//the ++ operator. simply calls a function in the curretn object to incremenet the rating of the blog post
 text & text::operator ++ (){
 
    incrementRate();      
 
 }
 
+//equality operator for ==
+bool text::operator == (const text &source) const{
+
+    //check if all of the contents are the same
+    if(strcmp(source.getResponse(),   this->getResponse()) == 0)
+      if(strcmp(source.getKeyword(),   this->getKeyword()) == 0)
+        if(strcmp(source.getAuthor(),   this->getAuthor()) == 0)
+          if(strcmp(source.getTitle(),   this->getTitle()) == 0)
+             return true; //return true if they're al identical. If one of them isn't
+                          //equal, it will return false
+    return false;
+
+}
+
+
+//the "inequality" operator
+bool text::operator != (const text &source) const{
+
+    //check if any of the items are different.
+    if(strcmp(source.getResponse(),   this->getResponse()) != 0)
+        return true;
+    if(strcmp(source.getKeyword(),   this->getKeyword()) != 0)
+        return true;
+    if(strcmp(source.getAuthor(),   this->getAuthor()) != 0)
+        return true;
+    if(strcmp(source.getTitle(),   this->getTitle()) != 0)
+        return true;
+
+    return false; 
+
+}
+
 //function for overloading the assignment operator (=) 
 //for the text class. This will allow me to assign 
 //textobj1 to textobj2 and will basically act as a deep copy
-text & text::operator = (const text & source){
+text & text::operator = (const text & textSource){
 
-    if(this == &source)
+    if(this == &textSource)
         return *this;
 
-    delete this; 
-
-    
+    //copy all of the items over from the source to the
+    //current object
+    strcpy(title, textSource.getTitle());
+    strcpy(author, textSource.getAuthor());
+    strcpy(keyword, textSource.getKeyword());
+    postRating = textSource.getRating();
+     
 }
+
+
 //the function for setting the response
 void text::setResponse(char *newResponse){
 
     strcpy(response, newResponse);
 }
 
+//simply returns the "response" data member
 char * text::getResponse() const{
 
     return response;
 
 }
+
+//dislpays all of the data members, including those of the post class
+void text::display() const{
+
+    cout << "\nTitle: "    << getTitle() << "\n"
+         <<   "Author:  "    << getAuthor()  << "\n"
+         <<   "Response: "  << response    << "\n"
+         <<   getRating()  << " people found this post helpful!\n\n";
+}
+
+    

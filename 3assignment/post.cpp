@@ -1,4 +1,4 @@
-/*
+    /*
 ** Max Marchuk
 ** CS 202
 ** Karla Fant
@@ -31,15 +31,21 @@ post::post(char *newTitle, char *newAuthor, char *newKeyword, int newRating){
     strcpy(keyword, newKeyword); 
 
 }
+
+
 post::~post(){
 
-    delete title;
-    delete author;
-    delete keyword;
-}
-void post::display(){
+    if(title)
+        delete title;
+    if(author)
+        delete author;
+    if(keyword)
+        delete keyword;
 
 }
+
+
+
 
 
 //set the title for the post class obj
@@ -102,3 +108,18 @@ void post::setRating(int newRating){
     postRating = newRating;
 
 }
+
+
+
+std::ostream & operator << (ostream &out, const post& obj){
+
+    obj.display(); 
+
+}
+void post::display() const{
+
+    cout << "\n in post display\n";
+
+}
+
+

@@ -7,7 +7,7 @@
 */
 
 
-#include <iostream>
+#include<iostream>
 #include <cstring>
 using namespace std;
 
@@ -20,7 +20,7 @@ class post
     public:
         post                    ();
         post                    (char *newTitle, char *newAuthor, char *newKeyword, int newRating);
-        ~post                   ();
+        virtual ~post           ();
         void setTitle           (char * newTitle);
         void setAuthor          (char * newAuthor);
         void setRating          (int newRating);
@@ -30,8 +30,10 @@ class post
         char *getAuthor         () const;
         int  getRating          () const;
         void incrementRate      ();
-        virtual void display    ();    
-
+        virtual void display    () const;    
+        friend ostream & operator <<(ostream &, const post&);
+       
+    
     protected:
         char * title;
         char * keyword;
@@ -54,24 +56,40 @@ class text : public post
         char * getResponse              () const ;
         friend istream & operator  >>   (istream &, text&);
         friend ostream & operator  <<   (ostream &, const text&);
+        bool operator              ==   (const text&) const; 
+        bool operator              !=   (const text&) const; 
         text & operator            =    (const text &);
         text & operator            ++   ();
+        void display                    () const;    
 
     private:
         char * response;
 
 };
 
+//derived class from post. Just another possible post type that can be made.
+//the only difference is that it has a URL added on as a data member.
+//
 class link : public post
 {
     public:
-        link                (char * newLink);
+        link                ();
+        link                (const link &);
         ~link               (); 
+        char * getURL       () const;
+        void  setURL       (char * newURL);
+        friend istream & operator  >>   (istream &, link&);
+        friend ostream & operator  <<   (ostream &, const link&);
+        bool operator              ==   (const link&) const; 
+        bool operator              !=   (const link&) const; 
+        link & operator            =    (link&);
+        link & operator            ++   ();
+        void display                    () const;    
+
 
     private:
-        char * source;
-        bool goodSource;    //modified by the user or blog owner. Determines if the link's source
-                            // is reliable. 
+        char * URL;
+                        
 }; 
                             
 //node class for the doubly linked list. 
@@ -88,9 +106,10 @@ class node
         node * getPrev   ();
         void   setNext   (node * newNext);
         void   setPrev   (node * newPrev); 
+        void   setPost   (post * newPost);
+        void dispPost    ();
+        bool keywordIs   (char * keyword);
 
-        //node *&          operator  =   (const node &); //overloading = operator to be able to set nodes easily
-        //friend bool      operator  ==  (const node *&, const node *&);
      private:
         node * prev;        //pointer to previous node 
         node * next;        //pointer to next node
@@ -99,14 +118,16 @@ class node
 
 
 //The class to manage the data structure (doubly linked list)
-class DLLArray
+class blog 
 {
 
     public:
-        DLLArray        ();
-        ~DLLArray       ();
-        void insertNew  (node *& newNode);
+        blog            ();
+        ~blog           ();
         void searchName (char * findName); 
+        void insertNew  (post *&);
+        void displayAll ();
+
     private:
         int MAX; 
         node ** head;

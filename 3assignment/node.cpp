@@ -15,15 +15,16 @@ node::node(){
     
     next = NULL;
     prev = NULL;
-    blogPost = NULL;
+    blogPost = NULL; 
 }
 
 //default destructo
 node::~node(){
 
-    delete next;
-    delete prev;
-    delete blogPost;
+    if(next)
+        delete next;
+    if(prev)
+        delete prev;
 }
 
 //returns previous pointer
@@ -54,6 +55,26 @@ void node::setPrev(node * newPrev){
 
 }
 
+void node::setPost(post * newPost){
 
+    blogPost = newPost;
 
+}
+
+//simply checks if the keyword is the same in the node 
+//as in the object passed in
+bool node::keywordIs(char * keyword){
+
+    //checks if the current node's has the same keyword
+    //as the word passed in
+    if(strcmp(keyword, blogPost->getKeyword()) == 0)
+        return true;
+    //return false if they are not the same
+    return false;
+}
+
+void node::dispPost(){
+
+    cout << *blogPost;
+}
 
