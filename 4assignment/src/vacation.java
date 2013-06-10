@@ -1,3 +1,10 @@
+/*
+ * Max Marchuk
+ * CS 202
+ * Karla Fant
+ * Program 4
+ * class file for the vacation class
+ */
 
 public class vacation {
 			
@@ -10,11 +17,11 @@ public class vacation {
 	public void setGoodWeather(boolean newGoodWeather){ this.goodWeather = newGoodWeather;}
 	public int getRating(){return this.rating;}
 	public boolean isGoodWeather(){return this.goodWeather;}
-	void display(){System.out.println("\nRating: "+ this.rating + "\nGood Weather: ");
+	void display(){System.out.print("Rating: "+ this.rating + "\nGood Weather: ");
 	  if(goodWeather == true) 
-		  System.out.println("Yes\n");
+		  System.out.println("Yes");
       else 
-    	  System.out.println("No\n");
+    	  System.out.println("No");
 	}
 	
 	private int rating;
